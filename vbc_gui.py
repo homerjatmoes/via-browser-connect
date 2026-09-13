@@ -107,7 +107,7 @@ def run_gui(args) -> int:
     ttk.Label(header, text="VIA Browser Connect", font=("Segoe UI", 18, "bold")).pack(anchor="w")
     ttk.Label(
         header,
-        text="Select USB keyboards, then enable them for a Chromium-based web browser (VIA / Vial / QMK).",
+        text="USB cable required. Select wired keyboards, then enable them for VIA / Vial / QMK. 2.4G may appear; results vary.",
         style="Muted.TLabel",
     ).pack(anchor="w", pady=(4, 0))
     body = ttk.Frame(root, padding=(20, 8, 20, 8))
@@ -166,7 +166,7 @@ def run_gui(args) -> int:
             return
         messagebox.showinfo(
             "VIA Browser Connect",
-            f"Installed {RULES_PATH}\n\nUnplug and replug each keyboard, then reopen the Chromium-based web browser.\n"
+            f"Installed {RULES_PATH}\n\nUnplug and replug each USB keyboard, then reopen the Chromium-based web browser.\n"
             "VIA: https://usevia.app\nVial: https://vial.rocks",
         )
 
