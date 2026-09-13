@@ -26,7 +26,7 @@ cd via-browser-connect
 python3 via-browser-connect.py
 ```
 
-The launcher needs `vbc_cli.py`, `vbc_gui.py`, `vbc_devices.py`, and `vbc_rules.py` beside it. If you copy only `via-browser-connect.py`, the next run will try to download those helpers next to it.
+The launcher needs `vbc_cli.py`, `vbc_gui.py`, `vbc_devices.py`, `vbc_rules.py`, and `vbc_desktop.py` beside it. If you copy only `via-browser-connect.py`, the next run will try to download those helpers next to it.
 
 No display? Use the prompt:
 
@@ -40,9 +40,28 @@ Other flags:
 python3 via-browser-connect.py --scan          # list USB devices
 python3 via-browser-connect.py --all           # allow every hidraw node
 python3 via-browser-connect.py --dry-run --cli # print rules, do not install
+python3 via-browser-connect.py --install-menu  # add to the application menu
+python3 via-browser-connect.py --remove-menu   # remove the launcher
 ```
 
 If the GUI fails to start, install `python3-tk` or use `--cli`.
+
+## Application menu
+
+GNOME, KDE Plasma, XFCE, Cinnamon, MATE, LXQt, COSMIC, and most Wayland launchers (rofi, fuzzel, wofi) all use the same XDG `.desktop` file. No extra per-desktop scripts.
+
+From the GUI, click **Add to app menu**, or:
+
+```bash
+python3 via-browser-connect.py --install-menu
+```
+
+That writes:
+
+- `~/.local/share/applications/via-browser-connect.desktop`
+- `~/.local/share/icons/hicolor/scalable/apps/via-browser-connect.svg`
+
+Then search **VIA Browser Connect** in Activities, Kickoff, Whisker, or your launcher. Log out/in only if an older desktop does not pick it up immediately.
 
 ## After it installs
 
