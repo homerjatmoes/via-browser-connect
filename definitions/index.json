@@ -9,7 +9,7 @@
       "productId": "0x3066",
       "mode": "usb",
       "viaPackedId": "0x36B03066",
-      "notes": "Official July 2025 USB definition."
+      "notes": "Official July 2025 USB definition. Supported / tested path."
     },
     {
       "name": "EPOMAKER EK21 2.4G",
@@ -18,7 +18,7 @@
       "productId": "0x3002",
       "mode": "2.4g",
       "viaPackedId": "0x36B03002",
-      "notes": "Official July 2025 layout with dongle PID 0x3002."
+      "notes": "Optional. 2.4G is unsupported — results vary. Prefer USB 0x36B03066."
     },
     {
       "name": "Royal Kludge RK61",

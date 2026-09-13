@@ -1,6 +1,8 @@
 # VIA Browser Connect
 
-Linux helper that writes udev rules so a Chromium-based web browser can open USB keyboards through WebHID. Use it for [VIA](https://usevia.app), [Vial](https://vial.rocks), and Keychron Launcher.
+Linux helper that writes udev rules so a Chromium-based web browser can open **USB** keyboards through WebHID. Use it for [VIA](https://usevia.app), [Vial](https://vial.rocks), and Keychron Launcher.
+
+**USB cable required.** Plug the keyboard in. That is the supported path — EPOMAKER EK21 over USB (`36b0:3066`) is confirmed working. 2.4G dongles can be tried; results vary, and VIA often fails even after udev is fixed. If that happens, switch off 2.4G / Bluetooth and use a cable.
 
 No pip packages. Python 3 + sudo (or pkexec) is enough.
 
@@ -65,30 +67,35 @@ Then search **VIA Browser Connect** in Activities, Kickoff, Whisker, or your lau
 
 ## After it installs
 
-1. Unplug and replug each keyboard (or 2.4G dongle).
+1. Unplug and replug each **USB** keyboard.
 2. Fully quit the Chromium-based web browser and reopen it. Snap-packaged browsers often ignore udev — use a `.deb` or distro package.
-3. Open [usevia.app](https://usevia.app) and authorize the device.
+3. Open [usevia.app](https://usevia.app) and authorize the wired device.
 
 Rules are written to `/etc/udev/rules.d/70-via-browser-connect.rules` (must sort before `73-seat-late.rules`).
 
 ## VIA JSON library
 
-Keyboard definition files live in [`definitions/`](https://github.com/homerjatmoes/via-browser-connect/tree/main/definitions). Drop a file in, append a row to `definitions/index.json`, commit. The app reads GitHub first.
+Keyboard definition files live in [`definitions/`](https://github.com/homerjatmoes/via-browser-connect/tree/main/definitions). USB JSON is the supported set. Drop a file in, append a row to `definitions/index.json`, commit.
 
 | File | Mode | VID:PID | VIA packed id |
 | --- | --- | --- | --- |
-| [EPOMAKER_EK21.json](definitions/EPOMAKER_EK21.json) | USB | `36b0:3066` | `0x36B03066` |
-| [EPOMAKER_EK21_24G.json](definitions/EPOMAKER_EK21_24G.json) | 2.4G | `36b0:3002` | `0x36B03002` |
-| [RK61.json](definitions/RK61.json) | USB | `1480:6461` | `0x14806461` |
-| [AULA_F75_ULTRA.json](definitions/AULA_F75_ULTRA.json) | USB | `fffe:00a9` | `0xFFFE00A9` |
-| [EPOMAKER_QK108.json](definitions/EPOMAKER_QK108.json) | USB | `36b0:30af` | `0x36B030AF` |
-| [EPOMAKER_GALAXY65.json](definitions/EPOMAKER_GALAXY65.json) | USB | `28e9:3165` | `0x28E93165` |
-
-Official zips for RK61, F75 Ultra, QK108, and Galaxy65 only included **one** JSON each. I did not invent 2.4G PIDs.
+| [EPOMAKER_EK21.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_EK21.json) | USB | `36b0:3066` | `0x36B03066` |
+| [RK61.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/RK61.json) | USB | `1480:6461` | `0x14806461` |
+| [AULA_F75_ULTRA.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/AULA_F75_ULTRA.json) | USB | `fffe:00a9` | `0xFFFE00A9` |
+| [EPOMAKER_QK108.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_QK108.json) | USB | `36b0:30af` | `0x36B030AF` |
+| [EPOMAKER_GALAXY65.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_GALAXY65.json) | USB | `28e9:3165` | `0x28E93165` |
+| [EPOMAKER_EK21_24G.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_EK21_24G.json) | 2.4G (unsupported) | `36b0:3002` | `0x36B03002` |
 
 ## EPOMAKER notes
 
-Those are different products. Your VIA draft list shows **EPOMAKER EK21** as `0x36B03066` (USB) and **AULA F75 Ultra** as `0xFFFE00A9`. Enable **Use V2 definitions** if VIA shows a red error. Bluetooth is not VIA-programmable.
+| Device | VID:PID | VIA JSON |
+| --- | --- | --- |
+| EK21 USB (required) | `36b0:3066` | `EPOMAKER_EK21.json` — packed id `0x36B03066` — **tested** |
+| Wireless 2.4G dongle (optional) | `36b0:3002` | `EPOMAKER_EK21_24G.json` — packed id `0x36B03002` — **results vary** |
+
+USB is required to avoid connectivity issues. The 2.4G dongle is a different product. You can try it; VIA often still fails after permissions are fixed. Switch the board off 2.4G / Bluetooth and use a cable.
+
+EPOMAKER pulled the old 2.4G download page. The 2.4G file here is the official July 2025 EK21 layout with `productId` `0x3002`. Enable **Use V2 definitions** if VIA shows a red error.
 
 ## `NotAllowedError: Failed to open the device`
 
