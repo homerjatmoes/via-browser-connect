@@ -18,11 +18,15 @@ CLI:
 
 ## Run
 
+Clone the **whole** repo (this is not a single-file copy):
+
 ```bash
 git clone https://github.com/homerjatmoes/via-browser-connect.git
 cd via-browser-connect
 python3 via-browser-connect.py
 ```
+
+The launcher needs `vbc_cli.py`, `vbc_gui.py`, `vbc_devices.py`, and `vbc_rules.py` beside it. If you copy only `via-browser-connect.py`, the next run will try to download those helpers next to it.
 
 No display? Use the prompt:
 
