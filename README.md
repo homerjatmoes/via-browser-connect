@@ -71,16 +71,27 @@ Then search **VIA Browser Connect** in Activities, Kickoff, Whisker, or your lau
 
 Rules are written to `/etc/udev/rules.d/70-via-browser-connect.rules` (must sort before `73-seat-late.rules`).
 
+## VIA JSON library
+
+Keyboard definition files live in [`definitions/`](https://github.com/homerjatmoes/via-browser-connect/tree/main/definitions). The app links that folder so you can add USB and 2.4G JSON as you go: drop the file in, append a row to `definitions/index.json`, commit.
+
+| File | Mode | VID:PID | VIA packed id |
+| --- | --- | --- | --- |
+| [EPOMAKER_EK21.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_EK21.json) | USB | `36b0:3066` | `0x36B03066` |
+| [EPOMAKER_EK21_24G.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_EK21_24G.json) | 2.4G | `36b0:3002` | `0x36B03002` |
+
 ## EPOMAKER notes
 
-| Device | VID:PID |
-| --- | --- |
-| EK21 wired | `36b0:3066` |
-| Wireless 2.4G dongle | `36b0:3002` |
+| Device | VID:PID | VIA JSON |
+| --- | --- | --- |
+| EK21 wired | `36b0:3066` | `EPOMAKER_EK21.json` — packed id `0x36B03066` |
+| Wireless 2.4G dongle | `36b0:3002` | `EPOMAKER_EK21_24G.json` — packed id `0x36B03002` |
 
-Those are different products. If the browser logs `NotAllowedError` on **Wireless 2.4G Dongle**, select that receiver in this script (or allow every hidraw device), then replug the dongle.
+Those are different products. Your VIA draft list shows **EPOMAKER EK21** as `0x36B03066` (USB). For 2.4G, load the 2.4G JSON in Design so VIA matches the dongle, then authorize **Wireless 2.4G Dongle**.
 
-EPOMAKER VIA support is often **wired USB only**. If permissions are fixed and VIA still fails, switch the board off 2.4G / Bluetooth and plug in a cable.
+EPOMAKER pulled the old 2.4G download page. The 2.4G file here is the official July 2025 EK21 layout with `productId` `0x3002`. Enable **Use V2 definitions** if VIA shows a red error.
+
+EPOMAKER VIA support is often **wired USB only**. If permissions are fixed and VIA still fails on the dongle, switch the board off 2.4G / Bluetooth and plug in a cable.
 
 ## `NotAllowedError: Failed to open the device`
 
