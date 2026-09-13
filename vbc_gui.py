@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import List
 
 from vbc_cli import run_cli
+from vbc_desktop import install_app_menu
 from vbc_devices import UsbDevice, scan_devices
 from vbc_rules import RULES_PATH, apply_rules, build_rules
 
@@ -30,10 +31,7 @@ def run_gui(args) -> int:
                 master, width=size, height=size, highlightthickness=0, bd=0, bg=parent_bg, cursor="hand2"
             )
             self.variable = variable
-            self.size = size
-            self.fill = fill
-            self.ring = ring
-            self.empty = empty
+            self.size, self.fill, self.ring, self.empty = size, fill, ring, empty
             self.bind("<Button-1>", self._toggle)
             variable.trace_add("write", lambda *_: self._paint())
             self._paint()
@@ -43,10 +41,9 @@ def run_gui(args) -> int:
 
         def _paint(self):
             self.delete("all")
-            pad = 1
             on = bool(self.variable.get())
             self.create_oval(
-                pad, pad, self.size - pad, self.size - pad,
+                1, 1, self.size - 1, self.size - 1,
                 fill=self.fill if on else self.empty,
                 outline=self.fill if on else self.ring, width=2,
             )
@@ -62,22 +59,12 @@ def run_gui(args) -> int:
             super().__init__(
                 master, width=width, height=height, highlightthickness=0, bd=0, bg=parent_bg, cursor="hand2"
             )
-            self._command = command
-            self._fill, self._text, self._text_fill, self._font = fill, text, text_fill, font
+            self._command, self._fill, self._text, self._text_fill, self._font = command, fill, text, text_fill, font
             self._width, self._height = width, height
-            self.bind("<Button-1>", self._click)
-            self._paint()
-
-        def _paint(self):
+            self.bind("<Button-1>", lambda e: self._command and self._command())
             self.delete("all")
-            pill(self, 1, 1, self._width - 1, self._height - 1, fill=self._fill, outline=self._fill)
-            self.create_text(
-                self._width / 2, self._height / 2, text=self._text, fill=self._text_fill, font=self._font
-            )
-
-        def _click(self, _event=None):
-            if self._command:
-                self._command()
+            pill(self, 1, 1, width - 1, height - 1, fill=fill, outline=fill)
+            self.create_text(width / 2, height / 2, text=text, fill=text_fill, font=font)
 
     devices: List[UsbDevice] = []
     try:
@@ -123,7 +110,6 @@ def run_gui(args) -> int:
         text="Select USB keyboards, then enable them for a Chromium-based web browser (VIA / Vial / QMK).",
         style="Muted.TLabel",
     ).pack(anchor="w", pady=(4, 0))
-
     body = ttk.Frame(root, padding=(20, 8, 20, 8))
     body.pack(fill="both", expand=True)
     canvas = tk.Canvas(body, bg=surface, highlightthickness=0)
@@ -194,6 +180,17 @@ def run_gui(args) -> int:
         if path:
             Path(path).write_text(rules, encoding="utf-8")
 
+    def do_install_menu():
+        try:
+            path = install_app_menu()
+        except Exception as exc:
+            messagebox.showerror("VIA Browser Connect", str(exc))
+            return
+        messagebox.showinfo(
+            "VIA Browser Connect",
+            f"Added to the application menu:\n{path}\n\nSearch GNOME, KDE, XFCE, Cinnamon, MATE, or LXQt for VIA Browser Connect.",
+        )
+
     def option_row(parent, label, variable):
         row = ttk.Frame(parent)
         row.pack(anchor="w", pady=3)
@@ -208,6 +205,9 @@ def run_gui(args) -> int:
     actions.pack(fill="x")
     PillButton(actions, "Refresh list", refresh, fill=accent, text_fill=surface, parent_bg=bg).pack(side="left")
     PillButton(actions, "Save rules…", do_save, fill=accent, text_fill=surface, parent_bg=bg).pack(side="left", padx=8)
+    PillButton(actions, "Add to app menu", do_install_menu, fill=accent, text_fill=surface, parent_bg=bg).pack(
+        side="left", padx=8
+    )
     PillButton(actions, "Enable with sudo", do_enable, fill=accent, text_fill=surface, parent_bg=bg).pack(side="right")
     refresh()
     root.mainloop()
