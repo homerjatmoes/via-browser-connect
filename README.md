@@ -2,7 +2,7 @@
 
 Linux helper that writes udev rules so a Chromium-based web browser can open **USB** keyboards through WebHID. Use it for [VIA](https://usevia.app), [Vial](https://vial.rocks), and Keychron Launcher.
 
-**USB cable required.** Plug the keyboard in. That is the supported path — EPOMAKER EK21 over USB (`36b0:3066`) is confirmed working. 2.4G dongles can be tried; results vary, and VIA often fails even after udev is fixed. If that happens, switch off 2.4G / Bluetooth and use a cable.
+**USB cable recommended.** Plug the keyboard in. That is the recommended path — EPOMAKER EK21 over USB (`36b0:3066`) is confirmed working. 2.4G may work with VIA; results will vary. If VIA cannot open the dongle, switch off 2.4G / Bluetooth and use a cable.
 
 No pip packages. Python 3 + sudo (or pkexec) is enough.
 
@@ -84,16 +84,16 @@ Keyboard definition files live in [`definitions/`](https://github.com/homerjatmo
 | [AULA_F75_ULTRA.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/AULA_F75_ULTRA.json) | USB | `fffe:00a9` | `0xFFFE00A9` |
 | [EPOMAKER_QK108.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_QK108.json) | USB | `36b0:30af` | `0x36B030AF` |
 | [EPOMAKER_GALAXY65.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_GALAXY65.json) | USB | `28e9:3165` | `0x28E93165` |
-| [EPOMAKER_EK21_24G.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_EK21_24G.json) | 2.4G (unsupported) | `36b0:3002` | `0x36B03002` |
+| [EPOMAKER_EK21_24G.json](https://github.com/homerjatmoes/via-browser-connect/blob/main/definitions/EPOMAKER_EK21_24G.json) | 2.4G (may work with VIA) | `36b0:3002` | `0x36B03002` |
 
 ## EPOMAKER notes
 
 | Device | VID:PID | VIA JSON |
 | --- | --- | --- |
-| EK21 USB (required) | `36b0:3066` | `EPOMAKER_EK21.json` — packed id `0x36B03066` — **tested** |
-| Wireless 2.4G dongle (optional) | `36b0:3002` | `EPOMAKER_EK21_24G.json` — packed id `0x36B03002` — **results vary** |
+| EK21 USB (recommended) | `36b0:3066` | `EPOMAKER_EK21.json` — packed id `0x36B03066` — **tested** |
+| Wireless 2.4G dongle (optional) | `36b0:3002` | `EPOMAKER_EK21_24G.json` — packed id `0x36B03002` — **may work with VIA** |
 
-USB is required to avoid connectivity issues. The 2.4G dongle is a different product. You can try it; VIA often still fails after permissions are fixed. Switch the board off 2.4G / Bluetooth and use a cable.
+USB cable recommended to avoid connectivity issues. The 2.4G dongle is a different product. It may work with VIA; results will vary. If it does not, switch the board off 2.4G / Bluetooth and plug in a cable.
 
 EPOMAKER pulled the old 2.4G download page. The 2.4G file here is the official July 2025 EK21 layout with `productId` `0x3002`. Enable **Use V2 definitions** if VIA shows a red error.
 
