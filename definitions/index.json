@@ -1,0 +1,24 @@
+{
+  "repo": "https://github.com/homerjatmoes/via-browser-connect/tree/main/definitions",
+  "rawBase": "https://raw.githubusercontent.com/homerjatmoes/via-browser-connect/main/definitions/",
+  "definitions": [
+    {
+      "name": "EPOMAKER EK21",
+      "file": "EPOMAKER_EK21.json",
+      "vendorId": "0x36B0",
+      "productId": "0x3066",
+      "mode": "usb",
+      "viaPackedId": "0x36B03066",
+      "notes": "Official July 2025 USB definition."
+    },
+    {
+      "name": "EPOMAKER EK21 2.4G",
+      "file": "EPOMAKER_EK21_24G.json",
+      "vendorId": "0x36B0",
+      "productId": "0x3002",
+      "mode": "2.4g",
+      "viaPackedId": "0x36B03002",
+      "notes": "Official July 2025 layout with dongle PID 0x3002. EPOMAKER's 2.4G download page is gone."
+    }
+  ]
+}
