@@ -58,7 +58,7 @@ def install_app_menu() -> Path:
                 "Type=Application",
                 "Name=VIA Browser Connect",
                 "GenericName=Keyboard WebHID helper",
-                "Comment=Enable USB keyboards for VIA, Vial, and Keychron Launcher",
+                "Comment=Enable USB keyboards for VIA, Vial, and Keychron Launcher. USB cable required.",
                 f"Exec={_desktop_quote(python)} {_desktop_quote(str(script))}",
                 f"Path={script.parent}",
                 f"Icon={APP_ID}",
