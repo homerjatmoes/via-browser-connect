@@ -9,7 +9,7 @@ Usage:
     python3 via-browser-connect.py
     python3 via-browser-connect.py --cli
     python3 via-browser-connect.py --scan
-    python3 via-browser-connect.py --all
+    python3 via-browser-connect.py --install-menu
 """
 
 from __future__ import annotations
@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import Optional, Sequence
 
 _HERE = Path(__file__).resolve().parent
-_HELPERS = ("vbc_devices.py", "vbc_rules.py", "vbc_cli.py", "vbc_gui.py")
+_HELPERS = ("vbc_devices.py", "vbc_rules.py", "vbc_cli.py", "vbc_gui.py", "vbc_desktop.py")
 _RAW = "https://raw.githubusercontent.com/homerjatmoes/via-browser-connect/main/"
 
 if str(_HERE) not in sys.path:
@@ -56,6 +56,7 @@ _ensure_helpers()
 
 try:
     from vbc_cli import run_cli
+    from vbc_desktop import install_app_menu, remove_app_menu
     from vbc_gui import run_gui
 except ModuleNotFoundError:
     sys.stderr.write(
@@ -81,7 +82,23 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--all", action="store_true", help="Allow every hidraw device")
     parser.add_argument("--no-bootloaders", action="store_true", help="Skip QMK flashing rules")
     parser.add_argument("--dry-run", action="store_true", help="Print rules without installing")
+    parser.add_argument(
+        "--install-menu",
+        action="store_true",
+        help="Install a .desktop launcher for GNOME, KDE, XFCE, and other XDG desktops",
+    )
+    parser.add_argument("--remove-menu", action="store_true", help="Remove the application-menu launcher")
     args = parser.parse_args(argv)
+
+    if args.install_menu:
+        path = install_app_menu()
+        print(f"Installed {path}")
+        print("Search your application menu for VIA Browser Connect.")
+        return 0
+    if args.remove_menu:
+        remove_app_menu()
+        print("Removed the application-menu launcher.")
+        return 0
 
     if sys.platform != "linux" and not args.scan and not args.dry_run:
         print(
