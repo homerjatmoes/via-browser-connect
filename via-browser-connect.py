@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""VIA Browser Connect — pick USB keyboards and grant Chrome WebHID access on Linux.
+# SPDX-License-Identifier: GPL-3.0-or-later
+"""VIA Browser Connect — pick USB keyboards and grant Chromium-based web browsers WebHID access on Linux.
 
 Usage:
     python3 via-browser-connect.py
@@ -24,7 +25,9 @@ def has_display() -> bool:
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
-    parser = argparse.ArgumentParser(description="Enable USB keyboards for Chrome WebHID.")
+    parser = argparse.ArgumentParser(
+        description="Enable USB keyboards for a Chromium-based web browser (WebHID)."
+    )
     parser.add_argument("--cli", action="store_true", help="Use the numbered prompt")
     parser.add_argument("--scan", action="store_true", help="List USB devices and exit")
     parser.add_argument("--all", action="store_true", help="Allow every hidraw device")
@@ -34,8 +37,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     if sys.platform != "linux" and not args.scan and not args.dry_run:
         print(
-            "udev rules are a Linux feature. On macOS, grant the keyboard in the Chrome picker. "
-            "On Windows, Chrome WebHID usually works without extra drivers; use Zadig only for flashing.",
+            "udev rules are a Linux feature. On macOS, grant the keyboard in the Chromium-based web browser picker. "
+            "On Windows, WebHID in a Chromium-based web browser usually works without extra drivers; use Zadig only for flashing.",
             file=sys.stderr,
         )
 
