@@ -49,7 +49,7 @@ def run_cli(args) -> int:
     if not devices and not args.all:
         print("No USB devices found.")
         return 1
-    print("VIA Browser Connect — enable USB keyboards for Chrome WebHID")
+    print("VIA Browser Connect — enable USB keyboards for a Chromium-based web browser (WebHID)")
     print_devices(devices)
     if args.all:
         for d in devices:
@@ -87,7 +87,7 @@ def run_cli(args) -> int:
         return 1
     print()
     print(f"Installed {RULES_PATH}")
-    print("Unplug and replug each keyboard, then reopen Chrome.")
+    print("Unplug and replug each keyboard, then reopen the Chromium-based web browser.")
     print("VIA: https://usevia.app    Vial: https://vial.rocks")
-    print("If Chrome still denies access, open chrome://device-log/")
+    print("If the browser still denies access, open chrome://device-log/")
     return 0
