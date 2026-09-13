@@ -6,41 +6,30 @@
   <circle cx="38" cy="18" r="6" fill="#c4a574"/>
   <circle cx="58" cy="18" r="6" fill="#b8c4a8"/>
   <text x="86" y="22" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="12">VIA Browser Connect</text>
-
   <text x="28" y="78" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700">VIA Browser Connect</text>
   <text x="28" y="104" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="13">Select USB keyboards, then enable them for a Chromium-based web browser (VIA / Vial / QMK).</text>
-
-  <rect x="28" y="124" width="864" height="300" rx="8" fill="#363434"/>
-  <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" fill="#f1ebe0">
-    <rect x="40" y="140" width="16" height="16" rx="3" fill="#e8c4b8"/>
-    <path d="M43.5 148.2 l3 3 6.5-7" fill="none" stroke="#363434" stroke-width="1.8"/>
-    <text x="66" y="153">HID   36b0:3066   EPOMAKER EK21</text>
-
-    <rect x="40" y="172" width="16" height="16" rx="3" fill="#e8c4b8"/>
-    <path d="M43.5 180.2 l3 3 6.5-7" fill="none" stroke="#363434" stroke-width="1.8"/>
-    <text x="66" y="185">HID   36b0:3002   EPOMAKER Wireless 2.4G Dongle</text>
-
-    <rect x="40" y="204" width="16" height="16" rx="3" fill="#2a2725" stroke="#a89890"/>
-    <text x="66" y="217">USB   046d:c52b   Logitech Unifying Receiver</text>
-
-    <rect x="40" y="236" width="16" height="16" rx="3" fill="#e8c4b8"/>
-    <path d="M43.5 244.2 l3 3 6.5-7" fill="none" stroke="#363434" stroke-width="1.8"/>
-    <text x="66" y="249">HID   3434:0110   Keychron Q2</text>
-
-    <rect x="40" y="268" width="16" height="16" rx="3" fill="#2a2725" stroke="#a89890"/>
-    <text x="66" y="281">USB   1d6b:0003   Linux Foundation 3.0 root hub</text>
+  <rect x="28" y="124" width="848" height="300" rx="8" fill="#363434"/>
+  <rect x="884" y="140" width="8" height="200" rx="4" fill="#e8c4b8"/>
+  <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" fill="#f1ebe0">
+    <circle cx="52" cy="152" r="8" fill="#e8c4b8"/>
+    <text x="72" y="157">HID   36b0:3066   EPOMAKER EK21</text>
+    <circle cx="52" cy="184" r="8" fill="#e8c4b8"/>
+    <text x="72" y="189">HID   36b0:3002   EPOMAKER Wireless 2.4G Dongle</text>
+    <circle cx="52" cy="216" r="8" fill="#363434" stroke="#a89890" stroke-width="2"/>
+    <text x="72" y="221">USB   046d:c52b   Logitech Unifying Receiver</text>
+    <circle cx="52" cy="248" r="8" fill="#e8c4b8"/>
+    <text x="72" y="253">HID   3434:0110   Keychron Q2</text>
+    <circle cx="52" cy="280" r="8" fill="#363434" stroke="#a89890" stroke-width="2"/>
+    <text x="72" y="285">USB   1d6b:0003   Linux Foundation 3.0 root hub</text>
   </g>
-
-  <rect x="40" y="448" width="16" height="16" rx="3" fill="#2a2725" stroke="#a89890"/>
+  <circle cx="48" cy="456" r="8" fill="#1c1b1a" stroke="#a89890" stroke-width="2"/>
   <text x="66" y="461" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="13">Allow every hidraw device (broader, less precise)</text>
-  <rect x="40" y="476" width="16" height="16" rx="3" fill="#e8c4b8"/>
-  <path d="M43.5 484.2 l3 3 6.5-7" fill="none" stroke="#363434" stroke-width="1.8"/>
+  <circle cx="48" cy="484" r="8" fill="#e8c4b8"/>
   <text x="66" y="489" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="13">Include QMK / RP2040 bootloaders for flashing</text>
-
-  <rect x="28" y="512" width="120" height="32" rx="6" fill="#e8c4b8"/>
-  <text x="88" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Refresh list</text>
-  <rect x="160" y="512" width="110" height="32" rx="6" fill="#e8c4b8"/>
-  <text x="215" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Save rules…</text>
-  <rect x="742" y="512" width="150" height="32" rx="6" fill="#e8c4b8"/>
-  <text x="817" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Enable with sudo</text>
+  <rect x="28" y="512" width="126" height="32" rx="16" fill="#e8c4b8"/>
+  <text x="91" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Refresh list</text>
+  <rect x="166" y="512" width="118" height="32" rx="16" fill="#e8c4b8"/>
+  <text x="225" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Save rules…</text>
+  <rect x="736" y="512" width="156" height="32" rx="16" fill="#e8c4b8"/>
+  <text x="814" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Enable with sudo</text>
 </svg>
