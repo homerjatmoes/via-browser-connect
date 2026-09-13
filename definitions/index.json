@@ -18,7 +18,43 @@
       "productId": "0x3002",
       "mode": "2.4g",
       "viaPackedId": "0x36B03002",
-      "notes": "Official July 2025 layout with dongle PID 0x3002. EPOMAKER's 2.4G download page is gone."
+      "notes": "Official July 2025 layout with dongle PID 0x3002."
+    },
+    {
+      "name": "Royal Kludge RK61",
+      "file": "RK61.json",
+      "vendorId": "0x1480",
+      "productId": "0x6461",
+      "mode": "usb",
+      "viaPackedId": "0x14806461",
+      "notes": "QMK RK61 PID 6461. Official zip only shipped this USB definition."
+    },
+    {
+      "name": "AULA F75 Ultra",
+      "file": "AULA_F75_ULTRA.json",
+      "vendorId": "0xFFFE",
+      "productId": "0x00A9",
+      "mode": "usb",
+      "viaPackedId": "0xFFFE00A9",
+      "notes": "Official EPOMAKER/AULA JSON. Matches VIA draft 0xFFFE00A9. No separate 2.4G file in the zip."
+    },
+    {
+      "name": "EPOMAKER QK108",
+      "file": "EPOMAKER_QK108.json",
+      "vendorId": "0x36B0",
+      "productId": "0x30AF",
+      "mode": "usb",
+      "viaPackedId": "0x36B030AF",
+      "notes": "Official QK108 JSON. No separate 2.4G file in the zip; use wired USB for VIA."
+    },
+    {
+      "name": "EPOMAKER Galaxy65",
+      "file": "EPOMAKER_GALAXY65.json",
+      "vendorId": "0x28E9",
+      "productId": "0x3165",
+      "mode": "usb",
+      "viaPackedId": "0x28E93165",
+      "notes": "Official Galaxy65 JSON. No separate 2.4G file in the zip."
     }
   ]
 }
