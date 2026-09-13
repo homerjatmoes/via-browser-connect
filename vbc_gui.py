@@ -107,7 +107,7 @@ def run_gui(args) -> int:
     ttk.Label(header, text="VIA Browser Connect", font=("Segoe UI", 18, "bold")).pack(anchor="w")
     ttk.Label(
         header,
-        text="USB cable required. Select wired keyboards, then enable them for VIA / Vial / QMK. 2.4G may appear; results vary.",
+        text="USB cable recommended. Select wired keyboards, then enable them for VIA / Vial / QMK. 2.4G may work with VIA; results will vary.",
         style="Muted.TLabel",
     ).pack(anchor="w", pady=(4, 0))
     body = ttk.Frame(root, padding=(20, 8, 20, 8))
