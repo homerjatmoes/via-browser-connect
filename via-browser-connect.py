@@ -2,6 +2,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """VIA Browser Connect — pick USB keyboards and grant Chromium-based web browsers WebHID access on Linux.
 
+Copy this one file anywhere. On first run it pulls the helper modules next to
+itself from GitHub if they are missing.
+
 Usage:
     python3 via-browser-connect.py
     python3 via-browser-connect.py --cli
@@ -14,10 +17,55 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+from pathlib import Path
 from typing import Optional, Sequence
 
-from vbc_cli import run_cli
-from vbc_gui import run_gui
+_HERE = Path(__file__).resolve().parent
+_HELPERS = ("vbc_devices.py", "vbc_rules.py", "vbc_cli.py", "vbc_gui.py")
+_RAW = "https://raw.githubusercontent.com/homerjatmoes/via-browser-connect/main/"
+
+if str(_HERE) not in sys.path:
+    sys.path.insert(0, str(_HERE))
+
+
+def _ensure_helpers() -> None:
+    missing = [name for name in _HELPERS if not (_HERE / name).is_file()]
+    if not missing:
+        return
+    print("Fetching helper files from GitHub:", ", ".join(missing), file=sys.stderr)
+    try:
+        from urllib.request import urlretrieve
+    except ImportError as exc:  # pragma: no cover
+        raise SystemExit(f"Cannot download helpers: {exc}") from exc
+    for name in missing:
+        dest = _HERE / name
+        try:
+            urlretrieve(_RAW + name, dest)
+        except Exception as exc:
+            sys.stderr.write(
+                f"Could not download {name}: {exc}\n\n"
+                "Clone the repo instead:\n"
+                "  git clone https://github.com/homerjatmoes/via-browser-connect.git\n"
+                "  cd via-browser-connect\n"
+                "  python3 via-browser-connect.py\n"
+            )
+            raise SystemExit(1) from exc
+
+
+_ensure_helpers()
+
+try:
+    from vbc_cli import run_cli
+    from vbc_gui import run_gui
+except ModuleNotFoundError:
+    sys.stderr.write(
+        "Missing helper files (vbc_cli.py and friends).\n"
+        "Clone the repo:\n"
+        "  git clone https://github.com/homerjatmoes/via-browser-connect.git\n"
+        "  cd via-browser-connect\n"
+        "  python3 via-browser-connect.py\n"
+    )
+    raise SystemExit(1)
 
 
 def has_display() -> bool:
