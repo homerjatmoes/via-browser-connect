@@ -38,3 +38,26 @@ SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"2e8a\", ATTRS{idProduct}==\"0003\", TAG+
 SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"314b\", ATTRS{idProduct}==\"0106\", TAG+=\"uaccess\", TAG+=\"udev-acl\"
 KERNEL==\"hidraw*\", SUBSYSTEM==\"hidraw\", ATTRS{idVendor}==\"03eb\", ATTRS{idProduct}==\"2067\", MODE=\"0660\", TAG+=\"uaccess\", TAG+=\"udev-acl\"
 \"\"\"
+
+
+@dataclass
+class UsbDevice:
+    vendor_id: str
+    product_id: str
+    name: str
+    manufacturer: str
+    kind: str
+    bus: str = \"\"
+    sysfs: str = \"\"
+    selected: bool = False
+
+    @property
+    def ident(self) -> str:
+        return f\"{self.vendor_id}:{self.product_id}\"
+
+    @property
+    def label(self) -> str:
+        host = self.manufacturer if self.manufacturer else \"USB\"
+        if self.name:
+            return f\"{host} {self.name}\".strip()
+        return f\"{host} {self.ident}\"
