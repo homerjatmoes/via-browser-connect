@@ -50,7 +50,7 @@ def run_cli(args) -> int:
         print("No USB devices found.")
         return 1
     print("VIA Browser Connect — enable USB keyboards for a Chromium-based web browser (WebHID)")
-    print("USB cable required. 2.4G dongles may appear; VIA support varies.")
+    print("USB cable recommended. 2.4G may work with VIA; results will vary.")
     print_devices(devices)
     if args.all:
         for d in devices:

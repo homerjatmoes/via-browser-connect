@@ -75,7 +75,7 @@ def has_display() -> bool:
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Enable USB keyboards for a Chromium-based web browser (WebHID). USB cable required; 2.4G results vary."
+        description="Enable USB keyboards for a Chromium-based web browser (WebHID). USB cable recommended. 2.4G may work with VIA; results will vary."
     )
     parser.add_argument("--cli", action="store_true", help="Use the numbered prompt")
     parser.add_argument("--scan", action="store_true", help="List USB devices and exit")
