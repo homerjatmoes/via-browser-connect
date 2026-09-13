@@ -8,9 +8,10 @@
   <text x="86" y="22" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="12">VIA Browser Connect</text>
 
   <text x="28" y="74" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700">VIA Browser Connect</text>
-  <text x="28" y="98" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="13">USB cable required. Select wired keyboards, then enable them for VIA / Vial / QMK. 2.4G may appear; results vary.</text>
+  <text x="28" y="92" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="13">USB cable recommended. Select wired keyboards, then enable them for VIA / Vial / QMK.</text>
+  <text x="28" y="110" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="13">2.4G may work with VIA; results will vary.</text>
 
-  <rect x="28" y="118" width="864" height="316" rx="8" fill="#363434"/>
+  <rect x="28" y="124" width="864" height="310" rx="8" fill="#363434"/>
   <rect x="876" y="134" width="8" height="220" rx="4" fill="#e8c4b8"/>
 
   <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" fill="#f1ebe0">

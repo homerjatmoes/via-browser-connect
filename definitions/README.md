@@ -2,11 +2,11 @@
 
 Drop VIA / Vial definition files here as you collect them. The app lists whatever is in `index.json`.
 
-**USB is required.** Wired JSON is the supported set. A 2.4G file may exist for experiments; results vary.
+**USB is recommended.** Wired JSON is the supported set. A 2.4G file may exist — it may work with VIA; results will vary.
 
 ## Add a board
 
-1. Put the `.json` in this folder (`VENDOR_MODEL.json`). Add `VENDOR_MODEL_24G.json` only if you are documenting an optional dongle — it is unsupported.
+1. Put the `.json` in this folder (`VENDOR_MODEL.json`). Add `VENDOR_MODEL_24G.json` only if you are documenting an optional dongle — 2.4G may work with VIA; results will vary.
 2. Append an entry to `index.json`.
 3. Commit. The web app reads GitHub first, then the local copy.
 
@@ -22,7 +22,7 @@ Drop VIA / Vial definition files here as you collect them. The app lists whateve
 }
 ```
 
-`mode` is `usb` (supported) or `2.4g` (optional, results vary). VIA packed id is `(VID << 16) | PID`.
+`mode` is `usb` (supported) or `2.4g` (optional; may work with VIA, results will vary). VIA packed id is `(VID << 16) | PID`.
 
 ## Current files
 
@@ -33,7 +33,7 @@ Drop VIA / Vial definition files here as you collect them. The app lists whateve
 | [AULA_F75_ULTRA.json](AULA_F75_ULTRA.json) | USB | `FFFE:00A9` | `0xFFFE00A9` |
 | [EPOMAKER_QK108.json](EPOMAKER_QK108.json) | USB | `36B0:30AF` | `0x36B030AF` |
 | [EPOMAKER_GALAXY65.json](EPOMAKER_GALAXY65.json) | USB | `28E9:3165` | `0x28E93165` |
-| [EPOMAKER_EK21_24G.json](EPOMAKER_EK21_24G.json) | 2.4G (unsupported) | `36B0:3002` | `0x36B03002` |
+| [EPOMAKER_EK21_24G.json](EPOMAKER_EK21_24G.json) | 2.4G (may work with VIA) | `36B0:3002` | `0x36B03002` |
 
 Official zips for F75 Ultra, QK108, Galaxy65, and RK61 only included **one** JSON each (USB). I did not invent 2.4G PIDs.
 

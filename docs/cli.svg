@@ -10,7 +10,7 @@
   <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14">
     <text x="28" y="68" fill="#e8c4b8">$ python3 via-browser-connect.py --cli</text>
     <text x="28" y="96" fill="#f1ebe0">VIA Browser Connect — enable USB keyboards for a Chromium-based web browser (WebHID)</text>
-    <text x="28" y="118" fill="#a89890">USB cable required. 2.4G dongles may appear; VIA support varies.</text>
+    <text x="28" y="118" fill="#a89890">USB cable recommended. 2.4G may work with VIA; results will vary.</text>
 
     <text x="28" y="156" fill="#a89890">  #  Kind  Vendor:Product  Device</text>
     <text x="28" y="176" fill="#6b615c">  -  ----  --------------  ------</text>

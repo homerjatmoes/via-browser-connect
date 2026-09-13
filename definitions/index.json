@@ -18,7 +18,7 @@
       "productId": "0x3002",
       "mode": "2.4g",
       "viaPackedId": "0x36B03002",
-      "notes": "Optional. 2.4G is unsupported — results vary. Prefer USB 0x36B03066."
+      "notes": "Optional. 2.4G may work with VIA; results will vary. Prefer USB 0x36B03066."
     },
     {
       "name": "Royal Kludge RK61",
