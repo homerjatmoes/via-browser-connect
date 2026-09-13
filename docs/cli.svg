@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480">
-  <rect width="920" height="480" rx="12" fill="#1c1b1a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" width="920" height="520">
+  <rect width="920" height="520" rx="12" fill="#1c1b1a"/>
   <rect x="0" y="0" width="920" height="36" rx="12" fill="#2a2725"/>
   <rect x="0" y="24" width="920" height="12" fill="#2a2725"/>
   <circle cx="18" cy="18" r="6" fill="#c47a6a"/>
@@ -9,24 +9,26 @@
 
   <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14">
     <text x="28" y="68" fill="#e8c4b8">$ python3 via-browser-connect.py --cli</text>
-    <text x="28" y="100" fill="#f1ebe0">VIA Browser Connect — enable USB keyboards for a Chromium-based web browser (WebHID)</text>
+    <text x="28" y="96" fill="#f1ebe0">VIA Browser Connect — enable USB keyboards for a Chromium-based web browser (WebHID)</text>
+    <text x="28" y="118" fill="#a89890">USB cable required. 2.4G dongles may appear; VIA support varies.</text>
 
-    <text x="28" y="140" fill="#a89890">  #  Kind  Vendor:Product  Device</text>
-    <text x="28" y="160" fill="#6b615c">  -  ----  --------------  ------</text>
-    <text x="28" y="184" fill="#f1ebe0">  1* HID   36b0:3066       EPOMAKER EK21</text>
-    <text x="28" y="208" fill="#f1ebe0">  2* HID   36b0:3002       EPOMAKER Wireless 2.4G Dongle</text>
-    <text x="28" y="232" fill="#a89890">  3  USB   046d:c52b       Logitech Unifying Receiver</text>
-    <text x="28" y="256" fill="#f1ebe0">  4* HID   3434:0110       Keychron Q2</text>
-    <text x="28" y="280" fill="#a89890">  5  USB   1d6b:0003       Linux Foundation 3.0 root hub</text>
+    <text x="28" y="156" fill="#a89890">  #  Kind  Vendor:Product  Device</text>
+    <text x="28" y="176" fill="#6b615c">  -  ----  --------------  ------</text>
+    <text x="28" y="200" fill="#f1ebe0">  1* HID   36b0:3066       EPOMAKER EK21</text>
+    <text x="28" y="224" fill="#f1ebe0">  2* HID   1480:6461       Royal Kludge RK61</text>
+    <text x="28" y="248" fill="#f1ebe0">  3* HID   fffe:00a9       AULA F75 Ultra</text>
+    <text x="28" y="272" fill="#f1ebe0">  4* HID   36b0:30af       EPOMAKER QK108</text>
+    <text x="28" y="296" fill="#a89890">  5  HID   36b0:3002       EPOMAKER 2.4G dongle</text>
+    <text x="28" y="320" fill="#a89890">  6  USB   046d:c52b       Logitech Unifying Receiver</text>
 
-    <text x="28" y="316" fill="#a89890">  * = HID interface (typical VIA / Vial / QMK target)</text>
+    <text x="28" y="352" fill="#a89890">  * = HID interface (typical VIA / Vial / QMK target)</text>
 
-    <text x="28" y="356" fill="#e8c4b8">Select devices (e.g. 1,2 or all) [1,2,4]:</text>
-    <text x="392" y="356" fill="#f1ebe0">1,2</text>
-    <rect x="412" y="342" width="8" height="18" fill="#e8c4b8"/>
+    <text x="28" y="388" fill="#e8c4b8">Select devices (e.g. 1,2 or all) [1,2,3,4]:</text>
+    <text x="428" y="388" fill="#f1ebe0">1,2,3,4</text>
+    <rect x="500" y="374" width="8" height="18" fill="#e8c4b8"/>
 
-    <text x="28" y="396" fill="#a89890">---- udev rules ----</text>
-    <text x="28" y="420" fill="#b8c4a8">KERNEL=="hidraw*", ATTRS{idVendor}=="36b0", ATTRS{idProduct}=="3066", MODE="0666"…</text>
-    <text x="28" y="448" fill="#e8c4b8">Write /etc/udev/rules.d/70-via-browser-connect.rules with sudo/pkexec? [Y/n]:</text>
+    <text x="28" y="428" fill="#a89890">---- udev rules ----</text>
+    <text x="28" y="452" fill="#b8c4a8">KERNEL=="hidraw*", ATTRS{idVendor}=="36b0", ATTRS{idProduct}=="3066", MODE="0666"…</text>
+    <text x="28" y="484" fill="#e8c4b8">Write /etc/udev/rules.d/70-via-browser-connect.rules with sudo/pkexec? [Y/n]:</text>
   </g>
 </svg>

@@ -1,35 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="920" height="560">
-  <rect width="920" height="560" rx="12" fill="#1c1b1a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" width="920" height="600">
+  <rect width="920" height="600" rx="12" fill="#1c1b1a"/>
   <rect x="0" y="0" width="920" height="36" rx="12" fill="#2a2725"/>
   <rect x="0" y="24" width="920" height="12" fill="#2a2725"/>
   <circle cx="18" cy="18" r="6" fill="#c47a6a"/>
   <circle cx="38" cy="18" r="6" fill="#c4a574"/>
   <circle cx="58" cy="18" r="6" fill="#b8c4a8"/>
   <text x="86" y="22" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="12">VIA Browser Connect</text>
-  <text x="28" y="78" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700">VIA Browser Connect</text>
-  <text x="28" y="104" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="13">Select USB keyboards, then enable them for a Chromium-based web browser (VIA / Vial / QMK).</text>
-  <rect x="28" y="124" width="848" height="300" rx="8" fill="#363434"/>
-  <rect x="884" y="140" width="8" height="200" rx="4" fill="#e8c4b8"/>
+
+  <text x="28" y="74" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="26" font-weight="700">VIA Browser Connect</text>
+  <text x="28" y="98" fill="#a89890" font-family="Segoe UI, sans-serif" font-size="13">USB cable required. Select wired keyboards, then enable them for VIA / Vial / QMK. 2.4G may appear; results vary.</text>
+
+  <rect x="28" y="118" width="864" height="316" rx="8" fill="#363434"/>
+  <rect x="876" y="134" width="8" height="220" rx="4" fill="#e8c4b8"/>
+
   <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" fill="#f1ebe0">
-    <circle cx="52" cy="152" r="8" fill="#e8c4b8"/>
-    <text x="72" y="157">HID   36b0:3066   EPOMAKER EK21</text>
-    <circle cx="52" cy="184" r="8" fill="#e8c4b8"/>
-    <text x="72" y="189">HID   36b0:3002   EPOMAKER Wireless 2.4G Dongle</text>
-    <circle cx="52" cy="216" r="8" fill="#363434" stroke="#a89890" stroke-width="2"/>
-    <text x="72" y="221">USB   046d:c52b   Logitech Unifying Receiver</text>
-    <circle cx="52" cy="248" r="8" fill="#e8c4b8"/>
-    <text x="72" y="253">HID   3434:0110   Keychron Q2</text>
-    <circle cx="52" cy="280" r="8" fill="#363434" stroke="#a89890" stroke-width="2"/>
-    <text x="72" y="285">USB   1d6b:0003   Linux Foundation 3.0 root hub</text>
+    <circle cx="52" cy="146" r="8" fill="#e8c4b8"/>
+    <text x="72" y="151">HID   36b0:3066   EPOMAKER EK21</text>
+
+    <circle cx="52" cy="182" r="8" fill="#e8c4b8"/>
+    <text x="72" y="187">HID   1480:6461   Royal Kludge RK61</text>
+
+    <circle cx="52" cy="218" r="8" fill="#e8c4b8"/>
+    <text x="72" y="223">HID   fffe:00a9   AULA F75 Ultra</text>
+
+    <circle cx="52" cy="254" r="8" fill="#e8c4b8"/>
+    <text x="72" y="259">HID   36b0:30af   EPOMAKER QK108</text>
+
+    <circle cx="52" cy="290" r="8" fill="#e8c4b8"/>
+    <text x="72" y="295">HID   28e9:3165   EPOMAKER Galaxy65</text>
+
+    <circle cx="52" cy="326" r="8" fill="#363434" stroke="#a89890" stroke-width="2"/>
+    <text x="72" y="331">HID   36b0:3002   EPOMAKER 2.4G dongle</text>
+
+    <circle cx="52" cy="362" r="8" fill="#363434" stroke="#a89890" stroke-width="2"/>
+    <text x="72" y="367">USB   046d:c52b   Logitech Unifying Receiver</text>
+
+    <circle cx="52" cy="398" r="8" fill="#363434" stroke="#a89890" stroke-width="2"/>
+    <text x="72" y="403">USB   1d6b:0003   Linux Foundation 3.0 root hub</text>
   </g>
-  <circle cx="48" cy="456" r="8" fill="#1c1b1a" stroke="#a89890" stroke-width="2"/>
-  <text x="66" y="461" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="13">Allow every hidraw device (broader, less precise)</text>
-  <circle cx="48" cy="484" r="8" fill="#e8c4b8"/>
-  <text x="66" y="489" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="13">Include QMK / RP2040 bootloaders for flashing</text>
-  <rect x="28" y="512" width="126" height="32" rx="16" fill="#e8c4b8"/>
-  <text x="91" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Refresh list</text>
-  <rect x="166" y="512" width="118" height="32" rx="16" fill="#e8c4b8"/>
-  <text x="225" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Save rules…</text>
-  <rect x="736" y="512" width="156" height="32" rx="16" fill="#e8c4b8"/>
-  <text x="814" y="533" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Enable with sudo</text>
+
+  <circle cx="48" cy="466" r="8" fill="#1c1b1a" stroke="#a89890" stroke-width="2"/>
+  <text x="66" y="471" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="13">Allow every hidraw device (broader, less precise)</text>
+  <circle cx="48" cy="498" r="8" fill="#e8c4b8"/>
+  <text x="66" y="503" fill="#f1ebe0" font-family="Segoe UI, sans-serif" font-size="13">Include QMK / RP2040 bootloaders for flashing</text>
+
+  <rect x="28" y="536" width="126" height="32" rx="16" fill="#e8c4b8"/>
+  <text x="91" y="557" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Refresh list</text>
+  <rect x="166" y="536" width="118" height="32" rx="16" fill="#e8c4b8"/>
+  <text x="225" y="557" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Save rules…</text>
+  <rect x="296" y="536" width="148" height="32" rx="16" fill="#e8c4b8"/>
+  <text x="370" y="557" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Add to app menu</text>
+  <rect x="736" y="536" width="156" height="32" rx="16" fill="#e8c4b8"/>
+  <text x="814" y="557" text-anchor="middle" fill="#363434" font-family="Segoe UI, sans-serif" font-size="13" font-weight="600">Enable with sudo</text>
 </svg>
