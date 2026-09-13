@@ -27,7 +27,7 @@ def run_gui(args) -> int:
 
     root.title("VIA Browser Connect")
     root.minsize(640, 480)
-    root.configure(bg="#0b0c0d")
+    root.configure(bg="#1c1b1a")
 
     all_hidraw = tk.BooleanVar(master=root, value=bool(args.all))
     include_bl = tk.BooleanVar(master=root, value=not args.no_bootloaders)
@@ -37,26 +37,26 @@ def run_gui(args) -> int:
         style.theme_use("clam")
     except tk.TclError:
         pass
-    style.configure(".", background="#0b0c0d", foreground="#ecece6", fieldbackground="#141516")
-    style.configure("TFrame", background="#0b0c0d")
-    style.configure("TLabel", background="#0b0c0d", foreground="#ecece6")
-    style.configure("Muted.TLabel", background="#0b0c0d", foreground="#8c8e8a")
-    style.configure("TCheckbutton", background="#0b0c0d", foreground="#ecece6")
-    style.configure("TButton", background="#c5cdd4", foreground="#0b0c0d", padding=8)
-    style.map("TButton", background=[("active", "#dbe2e8")])
+    style.configure(".", background="#1c1b1a", foreground="#f1ebe0", fieldbackground="#363434")
+    style.configure("TFrame", background="#1c1b1a")
+    style.configure("TLabel", background="#1c1b1a", foreground="#f1ebe0")
+    style.configure("Muted.TLabel", background="#1c1b1a", foreground="#a89890")
+    style.configure("TCheckbutton", background="#1c1b1a", foreground="#f1ebe0")
+    style.configure("TButton", background="#e8c4b8", foreground="#363434", padding=8)
+    style.map("TButton", background=[("active", "#f1ebe0")], foreground=[("active", "#363434")])
 
     header = ttk.Frame(root, padding=(20, 16, 20, 8))
     header.pack(fill="x")
     ttk.Label(header, text="VIA Browser Connect", font=("Segoe UI", 18, "bold")).pack(anchor="w")
     ttk.Label(
         header,
-        text="Select USB keyboards, then enable them for Chrome (VIA / Vial / QMK).",
+        text="Select USB keyboards, then enable them for a Chromium-based web browser (VIA / Vial / QMK).",
         style="Muted.TLabel",
     ).pack(anchor="w", pady=(4, 0))
 
     body = ttk.Frame(root, padding=(20, 8, 20, 8))
     body.pack(fill="both", expand=True)
-    canvas = tk.Canvas(body, bg="#141516", highlightthickness=0)
+    canvas = tk.Canvas(body, bg="#363434", highlightthickness=0)
     scroll = ttk.Scrollbar(body, orient="vertical", command=canvas.yview)
     inner = ttk.Frame(canvas)
     inner.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
@@ -111,7 +111,7 @@ def run_gui(args) -> int:
             return
         messagebox.showinfo(
             "VIA Browser Connect",
-            f"Installed {RULES_PATH}\n\nUnplug and replug each keyboard, then reopen Chrome.\n"
+            f"Installed {RULES_PATH}\n\nUnplug and replug each keyboard, then reopen the Chromium-based web browser.\n"
             "VIA: https://usevia.app\nVial: https://vial.rocks",
         )
 
