@@ -1,6 +1,6 @@
 # VIA Browser Connect
 
-Linux helper that writes udev rules so a Chromium-based web browser can open **USB** keyboards through WebHID. Use it for [VIA](https://usevia.app), [Vial](https://vial.rocks), and Keychron Launcher.
+Linux helper that writes udev rules so a Chromium-based web browser can open **USB** keyboards through WebHID. Use it for [VIA](https://usevia.app), [Vial](https://vial.rocks), and Keychron Launcher. Although this software is thoroughly tested, it makes system changes that require elevated permissions. I am not responsible for data loss or system errors. Read and understand the instructions, and use at your own risk.
 
 **USB cable recommended.** Plug the keyboard in. That is the recommended path — EPOMAKER EK21 over USB (`36b0:3066`) is confirmed working. 2.4G may work with VIA; results will vary. If VIA cannot open the dongle, switch off 2.4G / Bluetooth and use a cable.
 
