@@ -6,7 +6,7 @@ Linux helper that writes udev rules so a Chromium-based web browser can open **U
 
 No pip packages. Python 3 + sudo (or pkexec) is enough.
 
-AI coded with human review.
+AI coded with [Grok](https://x.ai), with human review.
 
 ## Screenshots
 
@@ -100,6 +100,33 @@ EPOMAKER pulled the old 2.4G download page. The 2.4G file here is the official J
 ## `NotAllowedError: Failed to open the device`
 
 That is a Linux hidraw permission error, not a VIA JSON problem. Re-run this script so the matching VID:PID is in the rules, replug, restart the Chromium-based web browser. Check `chrome://device-log/` for HID lines.
+
+## Contributors
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <a href="https://github.com/homerjatmoes">
+        <img src="https://github.com/homerjatmoes.png?size=100" width="100px;" alt="homerjatmoes"/><br />
+        <b>homerjatmoes</b>
+      </a>
+      <br />
+      Author · human review
+    </td>
+    <td align="center" valign="top" width="50%">
+      <a href="https://x.ai">
+        <img src="https://github.com/xai-org.png?size=100" width="100px;" alt="Grok"/><br />
+        <b>Grok</b>
+      </a>
+      <br />
+      xAI · coding assistant
+    </td>
+  </tr>
+</table>
+
+## Grok pull-request review
+
+Opened and updated pull requests get a review comment from Grok 4.6 when the repository secret `XAI_API_KEY` is set at [console.x.ai](https://console.x.ai). Add it under **Settings → Secrets and variables → Actions**. Fork PRs skip the job because GitHub does not share secrets with forks. A human still reviews and merges.
 
 ## License
 
