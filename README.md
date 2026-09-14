@@ -126,7 +126,11 @@ That is a Linux hidraw permission error, not a VIA JSON problem. Re-run this scr
 
 ## Grok pull-request review
 
-Opened and updated pull requests get a review comment from Grok 4.6 when the repository secret `XAI_API_KEY` is set at [console.x.ai](https://console.x.ai). Add it under **Settings → Secrets and variables → Actions**. Fork PRs skip the job because GitHub does not share secrets with forks. A human still reviews and merges.
+Opened and updated pull requests get a review comment from Grok 4.6 when the repository secret `XAI_API_KEY` is set. Create a key at [console.x.ai](https://console.x.ai), then add it here:
+
+[github.com/homerjatmoes/via-browser-connect/settings/secrets/actions](https://github.com/homerjatmoes/via-browser-connect/settings/secrets/actions)
+
+That page is **repository Settings**, not your GitHub account settings. Click **New repository secret**, name it `XAI_API_KEY`, paste the key, and save. You must be signed in as the repo owner. Fork PRs skip the job because GitHub does not share secrets with forks. A human still reviews and merges.
 
 ## License
 
