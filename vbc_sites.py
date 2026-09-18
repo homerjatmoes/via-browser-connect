@@ -12,24 +12,27 @@ WEBHID_SITES = (
 
 def after_install_text() -> str:
     lines = [
-        "Unplug and replug each USB keyboard, then fully quit and reopen the Chromium-based web browser.",
-        "Snap Chrome often ignores udev — use a .deb or distro package.",
+        "Unplug and replug each USB keyboard, then fully quit and reopen Chrome/Edge.",
+        "Do not use Snap Chromium — it cannot open hidraw even with udev rules.",
         "",
-        "Chrome authorizes each site separately. A grant on usevia.app does not cover the screen tool.",
+        "Chrome authorizes each site separately. usevia.app does not cover the screen tool.",
     ]
     for name, url in WEBHID_SITES:
         lines.append(f"  {name}: {url}")
     lines.extend(
         [
             "",
-            "QK108 clock / GIFs:",
-            "  1. USB-C cable (not 2.4G / Bluetooth).",
-            "  2. Turn the screen on (dedicated key under the display, above Num Lock).",
-            "  3. Open https://image.rdmctmzt.com/ in Chrome or Edge.",
-            "  4. Connect Device → pick the QK108 HID → Allow.",
-            "  Connecting usually syncs date and time from the PC.",
+            "QK108 screen still says not authorized:",
+            "  The LCD page filters usagePage 0x00FF / usage 1, NOT the VIA interface.",
+            "  1. USB-C into the PC (not a dock/KVM if you can avoid it).",
+            "  2. Switch on the screen — key under the display, above Num Lock.",
+            "     Then put it on GIF/home so the screen HID actually enumerates.",
+            "  3. In the Chrome picker, pick the SCREEN / vendor HID, not Keyboard.",
+            "  4. If the picker is empty: sudo chmod a+rw /dev/hidraw*  then retry.",
+            "  5. chrome://device-log/  — FILE_ERROR_ACCESS_DENIED means udev/Snap.",
+            "  6. Still dead: hold Esc, plug USB-C, wait ~5 min (screen MCU firmware).",
             "",
-            "If the picker is empty or open fails, check chrome://device-log/",
+            "lsusb should show 36b0:30af and sometimes a second 36b0:30ee.",
         ]
     )
     return "\n".join(lines)

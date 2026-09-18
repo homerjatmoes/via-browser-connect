@@ -4,11 +4,18 @@ import os
 import shutil
 import subprocess
 import tempfile
-from typing import Iterable
+from typing import Iterable, Set, Tuple
 
 from vbc_devices import UsbDevice
 
 RULES_PATH = "/etc/udev/rules.d/70-via-browser-connect.rules"
+
+# LCD Screen Driver (image.rdmctmzt.com) talks to a vendor HID collection
+# (usagePage 0x00FF / usage 0x01), not the VIA raw HID (0xFF60 / 0x61).
+# QK108 VIA is 36b0:30af. The tool also ships a profile for 36b0:30ee.
+SCREEN_COMPANIONS = {
+    "36b0": ("30af", "30ee"),
+}
 
 QMK_BOOTLOADER_RULES = """# QMK flashing (DFU, Caterina, STM32, RP2040, APM32)
 SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"03eb\", ATTRS{idProduct}==\"2ff4\", TAG+=\"uaccess\", TAG+=\"udev-acl\"
@@ -23,6 +30,38 @@ KERNEL==\"hidraw*\", SUBSYSTEM==\"hidraw\", ATTRS{idVendor}==\"03eb\", ATTRS{idP
 """
 
 
+def _hidraw_pair(vid: str, pid: str | None, comment: str) -> list[str]:
+    pid_match = "" if not pid else f', ATTRS{{idProduct}}=="{pid}"'
+    return [
+        f"# {comment}",
+        (
+            'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", '
+            f'ATTRS{{idVendor}}=="{vid}"{pid_match}, '
+            'MODE="0666", GROUP="plugdev", TAG+="uaccess", TAG+="udev-acl"'
+        ),
+        (
+            'SUBSYSTEM=="usb", '
+            f'ATTRS{{idVendor}}=="{vid}"{pid_match}, '
+            'MODE="0666", TAG+="uaccess", TAG+="udev-acl"'
+        ),
+        "",
+    ]
+
+
+def _companion_ids(devices: Iterable[UsbDevice]) -> Set[Tuple[str, str]]:
+    extra: Set[Tuple[str, str]] = set()
+    selected = [d for d in devices if d.selected]
+    vids = {d.vendor_id for d in selected}
+    existing = {(d.vendor_id, d.product_id) for d in selected}
+    for vid, pids in SCREEN_COMPANIONS.items():
+        if vid in vids:
+            extra.add((vid, ""))  # whole vendor hidraw — screen PID can differ
+            for pid in pids:
+                if (vid, pid) not in existing:
+                    extra.add((vid, pid))
+    return extra
+
+
 def build_rules(
     devices: Iterable[UsbDevice],
     *,
@@ -30,7 +69,7 @@ def build_rules(
     include_bootloaders: bool = True,
 ) -> str:
     lines = [
-        "# VIA Browser Connect — Chrome WebHID / VIA / Vial / Keychron Launcher",
+        "# VIA Browser Connect — Chrome WebHID / VIA / Vial / LCD screen tools",
         f"# Install as {RULES_PATH}",
         "# Filename must sort before 73-seat-late.rules so TAG+=uaccess is honored.",
         "",
@@ -39,7 +78,7 @@ def build_rules(
         lines.append("# Every hidraw node")
         lines.append(
             'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", '
-            'TAG+="uaccess", TAG+="udev-acl"'
+            'GROUP="plugdev", TAG+="uaccess", TAG+="udev-acl"'
         )
         lines.append("")
     else:
@@ -47,24 +86,23 @@ def build_rules(
         if not selected:
             lines.append("# No keyboards selected.")
             lines.append("")
+        written: Set[Tuple[str, str]] = set()
         for d in selected:
-            pid_match = (
-                ""
-                if d.product_id in {"0000", "0"}
-                else f', ATTRS{{idProduct}}=="{d.product_id}"'
-            )
-            lines.append(f"# {d.label} ({d.ident})")
-            lines.append(
-                'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", '
-                f'ATTRS{{idVendor}}=="{d.vendor_id}"{pid_match}, '
-                'MODE="0666", TAG+="uaccess", TAG+="udev-acl"'
-            )
-            lines.append(
-                'SUBSYSTEM=="usb", '
-                f'ATTRS{{idVendor}}=="{d.vendor_id}"{pid_match}, '
-                'MODE="0666", TAG+="uaccess", TAG+="udev-acl"'
-            )
-            lines.append("")
+            key = (d.vendor_id, d.product_id)
+            if key in written:
+                continue
+            written.add(key)
+            lines.extend(_hidraw_pair(d.vendor_id, d.product_id, f"{d.label} ({d.ident})"))
+        for vid, pid in sorted(_companion_ids(selected)):
+            key = (vid, pid)
+            if key in written:
+                continue
+            written.add(key)
+            if pid:
+                comment = f"EPOMAKER LCD companion {vid}:{pid}"
+            else:
+                comment = f"EPOMAKER vendor hidraw {vid}:* (screen interface / extra PID)"
+            lines.extend(_hidraw_pair(vid, pid or None, comment))
     if include_bootloaders:
         lines.append(QMK_BOOTLOADER_RULES)
     return "\n".join(lines).rstrip() + "\n"
@@ -92,10 +130,11 @@ def apply_rules(content: str) -> None:
 set -euo pipefail
 install -m 644 {tmp} {RULES_PATH}
 udevadm control --reload-rules
-udevadm trigger
+udevadm trigger --subsystem-match=hidraw --subsystem-match=usb
 if getent group plugdev >/dev/null 2>&1; then
   usermod -aG plugdev {user} || true
 fi
+chmod a+rw /dev/hidraw* 2>/dev/null || true
 rm -f {tmp}
 """
     result = run_privileged(script)
