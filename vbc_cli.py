@@ -5,6 +5,7 @@ from typing import List, Sequence
 
 from vbc_devices import UsbDevice, scan_devices
 from vbc_rules import RULES_PATH, apply_rules, build_rules
+from vbc_sites import after_install_text
 
 
 def parse_selection(text: str, count: int) -> List[int]:
@@ -37,7 +38,7 @@ def print_devices(devices: Sequence[UsbDevice]) -> None:
         mark = "*" if d.kind == "HID" else " "
         print(f" {i:2d}{mark} {d.kind:<4} {d.ident:<14} {d.label}")
     print()
-    print("  * = HID interface (typical VIA / Vial / QMK target)")
+    print("  * = HID interface (typical VIA / Vial / QMK / screen-tool target)")
     print()
 
 
@@ -88,7 +89,5 @@ def run_cli(args) -> int:
         return 1
     print()
     print(f"Installed {RULES_PATH}")
-    print("Unplug and replug each USB keyboard, then reopen the Chromium-based web browser.")
-    print("VIA: https://usevia.app    Vial: https://vial.rocks")
-    print("If the browser still denies access, open chrome://device-log/")
+    print(after_install_text())
     return 0

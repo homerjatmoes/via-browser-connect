@@ -1,6 +1,12 @@
 {
   "repo": "https://github.com/homerjatmoes/via-browser-connect/tree/main/definitions",
   "rawBase": "https://raw.githubusercontent.com/homerjatmoes/via-browser-connect/main/definitions/",
+  "webhidSites": [
+    {"name": "VIA", "url": "https://usevia.app"},
+    {"name": "Vial", "url": "https://vial.rocks"},
+    {"name": "EPOMAKER LCD Screen Driver", "url": "https://image.rdmctmzt.com/", "notes": "QK108 clock sync and GIFs. Separate Chrome authorization from VIA."},
+    {"name": "EPOMAKER Hub", "url": "https://hub.epomaker.com"}
+  ],
   "definitions": [
     {
       "name": "EPOMAKER EK21",
@@ -45,7 +51,8 @@
       "productId": "0x30AF",
       "mode": "usb",
       "viaPackedId": "0x36B030AF",
-      "notes": "Official QK108 JSON. No separate 2.4G file in the zip; use wired USB for VIA."
+      "notes": "Official QK108 JSON. Wired USB for VIA and for the LCD tool. Chrome must authorize https://image.rdmctmzt.com/ separately from usevia.app. Leave the screen on (key under the display) before Connect Device.",
+      "screenTool": "https://image.rdmctmzt.com/"
     },
     {
       "name": "EPOMAKER Galaxy65",

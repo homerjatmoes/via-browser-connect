@@ -21,7 +21,14 @@ from pathlib import Path
 from typing import Optional, Sequence
 
 _HERE = Path(__file__).resolve().parent
-_HELPERS = ("vbc_devices.py", "vbc_rules.py", "vbc_cli.py", "vbc_gui.py", "vbc_desktop.py")
+_HELPERS = (
+    "vbc_devices.py",
+    "vbc_rules.py",
+    "vbc_cli.py",
+    "vbc_gui.py",
+    "vbc_desktop.py",
+    "vbc_sites.py",
+)
 _RAW = "https://raw.githubusercontent.com/homerjatmoes/via-browser-connect/main/"
 
 if str(_HERE) not in sys.path:

@@ -8,6 +8,7 @@ from vbc_cli import run_cli
 from vbc_desktop import install_app_menu
 from vbc_devices import UsbDevice, scan_devices
 from vbc_rules import RULES_PATH, apply_rules, build_rules
+from vbc_sites import after_install_text
 
 
 def run_gui(args) -> int:
@@ -107,7 +108,7 @@ def run_gui(args) -> int:
     ttk.Label(header, text="VIA Browser Connect", font=("Segoe UI", 18, "bold")).pack(anchor="w")
     ttk.Label(
         header,
-        text="USB cable recommended. Select wired keyboards, then enable them for VIA / Vial / QMK. 2.4G may work with VIA; results will vary.",
+        text="USB cable recommended. Select wired keyboards, then enable them for VIA / Vial / screen tools. 2.4G may work with VIA; results will vary.",
         style="Muted.TLabel",
     ).pack(anchor="w", pady=(4, 0))
     body = ttk.Frame(root, padding=(20, 8, 20, 8))
@@ -166,8 +167,7 @@ def run_gui(args) -> int:
             return
         messagebox.showinfo(
             "VIA Browser Connect",
-            f"Installed {RULES_PATH}\n\nUnplug and replug each USB keyboard, then reopen the Chromium-based web browser.\n"
-            "VIA: https://usevia.app\nVial: https://vial.rocks",
+            f"Installed {RULES_PATH}\n\n{after_install_text()}",
         )
 
     def do_save():
