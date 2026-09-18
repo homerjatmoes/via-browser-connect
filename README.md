@@ -1,6 +1,6 @@
 # VIA Browser Connect
 
-Linux helper that writes udev rules so a Chromium-based web browser can open **USB** keyboards through WebHID. Use it for [VIA](https://usevia.app), [Vial](https://vial.rocks), and Keychron Launcher. Although this software is thoroughly tested, it makes system changes that require elevated permissions. I am not responsible for data loss or system errors. Read and understand the instructions, and use at your own risk.
+Linux helper that writes udev rules so a Chromium-based web browser can open **USB** keyboards through WebHID. Use it for [VIA](https://usevia.app), [Vial](https://vial.rocks), [EPOMAKER LCD Screen Driver](https://image.rdmctmzt.com/), and Keychron Launcher. Although this software is thoroughly tested, it makes system changes that require elevated permissions. I am not responsible for data loss or system errors. Read and understand the instructions, and use at your own risk.
 
 **USB cable recommended.** Plug the keyboard in. That is the recommended path — EPOMAKER EK21 over USB (`36b0:3066`) is confirmed working. 2.4G may work with VIA; results will vary. If VIA cannot open the dongle, switch off 2.4G / Bluetooth and use a cable.
 
@@ -28,7 +28,7 @@ cd via-browser-connect
 python3 via-browser-connect.py
 ```
 
-The launcher needs `vbc_cli.py`, `vbc_gui.py`, `vbc_devices.py`, `vbc_rules.py`, and `vbc_desktop.py` beside it. If you copy only `via-browser-connect.py`, the next run will try to download those helpers next to it.
+The launcher needs `vbc_cli.py`, `vbc_gui.py`, `vbc_devices.py`, `vbc_rules.py`, `vbc_desktop.py`, and `vbc_sites.py` beside it. If you copy only `via-browser-connect.py`, the next run will try to download those helpers next to it.
 
 No display? Use the prompt:
 
@@ -69,9 +69,31 @@ Then search **VIA Browser Connect** in Activities, Kickoff, Whisker, or your lau
 
 1. Unplug and replug each **USB** keyboard.
 2. Fully quit the Chromium-based web browser and reopen it. Snap-packaged browsers often ignore udev — use a `.deb` or distro package.
-3. Open [usevia.app](https://usevia.app) and authorize the wired device.
+3. Open the site you need and authorize the wired device **on that site**.
+
+Chrome stores WebHID permission per origin. Authorizing [usevia.app](https://usevia.app) does **not** authorize the screen tool.
+
+| Site | URL |
+| --- | --- |
+| VIA | https://usevia.app |
+| Vial | https://vial.rocks |
+| EPOMAKER LCD Screen Driver (clock + GIFs) | https://image.rdmctmzt.com/ |
+| EPOMAKER Hub | https://hub.epomaker.com |
 
 Rules are written to `/etc/udev/rules.d/70-via-browser-connect.rules` (must sort before `73-seat-late.rules`).
+
+## QK108 screen authorization
+
+The QK108 screen is a separate HID consumer from VIA. Same VID:PID (`36b0:30af`), different Chrome grant.
+
+1. Plug in USB-C. The LCD tool will not talk over 2.4G or Bluetooth.
+2. Enable the QK108 in this app (or use **Allow every hidraw**), then replug.
+3. Turn the screen **on** with the dedicated key under the display (above Num Lock). A dark screen often never appears in the picker.
+4. In Chrome or Edge (not Firefox), open https://image.rdmctmzt.com/
+5. **Connect Device** → pick the QK108 → Allow.
+6. Connecting usually syncs date and time from the PC. Same page uploads GIFs.
+
+Cycle screen pages with **Fn+Enter**. Toggle animation with **Fn+Right Shift**.
 
 ## VIA JSON library
 
@@ -92,6 +114,7 @@ Keyboard definition files live in [`definitions/`](https://github.com/homerjatmo
 | --- | --- | --- |
 | EK21 USB (recommended) | `36b0:3066` | `EPOMAKER_EK21.json` — packed id `0x36B03066` — **tested** |
 | Wireless 2.4G dongle (optional) | `36b0:3002` | `EPOMAKER_EK21_24G.json` — packed id `0x36B03002` — **may work with VIA** |
+| QK108 USB | `36b0:30af` | `EPOMAKER_QK108.json` — packed id `0x36B030AF` — VIA plus LCD tool |
 
 USB cable recommended to avoid connectivity issues. The 2.4G dongle is a different product. It may work with VIA; results will vary. If it does not, switch the board off 2.4G / Bluetooth and plug in a cable.
 
@@ -100,6 +123,8 @@ EPOMAKER pulled the old 2.4G download page. The 2.4G file here is the official J
 ## `NotAllowedError: Failed to open the device`
 
 That is a Linux hidraw permission error, not a VIA JSON problem. Re-run this script so the matching VID:PID is in the rules, replug, restart the Chromium-based web browser. Check `chrome://device-log/` for HID lines.
+
+If the LCD tool picker is empty, the screen is probably off, the board is on 2.4G/BT, or Chrome has not been restarted after the udev rule.
 
 ## Contributors
 
